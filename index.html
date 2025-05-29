@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+  <title>JAVA FULLSTACK</title>
+</head>
+<body>
+  <h1>JAVA FULLSTACK</h1>
+  <button onclick="loadText()">Load Text</button>
+  <div id="demo"></div>
+
+  <script>
+    function loadText() {
+      fetch('/text.txt')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('File not found');
+          }
+          return response.text();
+        })
+        .then(data => {
+          document.getElementById('demo').innerHTML = data;
+        })
+        .catch(error => {
+          document.getElementById('demo').innerHTML = 'Not found';
+          console.error('Error:', error);
+        });
+    }
+  </script>
+</body>
+</html>
+.
